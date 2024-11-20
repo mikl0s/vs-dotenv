@@ -4,6 +4,7 @@
   "description": "VS Code extension to update .env files from a private GitHub Gist",
   "version": "0.0.1",
   "private": true,
+  "type": "module",
   "engines": {
     "vscode": "^1.84.0",
     "node": ">=18.0.0"
@@ -24,20 +25,16 @@
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
     "pretest": "npm run compile && npm run lint",
-    "lint": "eslint src --ext ts",
-    "test": "vitest"
+    "lint": "eslint packages/extension/src/**/*.ts",
+    "test": "vitest run --no-color"
   },
   "devDependencies": {
-    "@types/vscode": "latest",
     "@types/node": "latest",
-    "typescript": "latest",
-    "vitest": "latest",
+    "@types/vscode": "latest",
+    "@typescript-eslint/eslint-plugin": "latest",
     "@typescript-eslint/parser": "latest",
-    "@typescript-eslint/eslint-plugin": "latest"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/yourusername/vscode-update-env"
-  },
-  "license": "MIT"
+    "eslint": "latest",
+    "typescript": "latest",
+    "vitest": "latest"
+  }
 }

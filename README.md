@@ -53,7 +53,7 @@ npm run compile
 # Watch for changes
 npm run watch
 
-# Run tests
+# Run tests (with parallel execution)
 npm run test
 ```
 
@@ -63,7 +63,7 @@ npm run test
 - `/docs`: Project documentation
 - Uses npm workspaces for clean dependency management
 - TypeScript for type safety
-- Vitest for testing
+- Vitest for testing with parallel execution support
 
 ## Contributing
 

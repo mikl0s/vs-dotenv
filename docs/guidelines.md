@@ -5,6 +5,7 @@
 
 2. **Unit Testing**
    - Write tests covering all features and edge cases.
+   - Utilize Vitest in parallel mode for unit testing.
 
 3. **Clear Comments**
    - Explain complex code; use JSDoc/TSDoc annotations.

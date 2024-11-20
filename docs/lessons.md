@@ -50,3 +50,37 @@ Implemented command registration and click handler for the status bar button wit
 - `/packages/extension/src/extension.ts`: Command registration and handler
 - `/packages/extension/src/test/extension.test.ts`: Command testing setup
 - VS Code API: commands.registerCommand, window.showInformationMessage
+
+## Story 2.1: Check for .env File Existence
+
+### Summary
+Implemented file existence checking for .env files in the workspace with proper error handling and user feedback.
+
+### Key Insights
+- Use fs.promises.access for async file existence checks
+- Handle case where no workspace is open first
+- Create utility functions in separate files for better organization
+- Mock vscode.workspace.workspaceFolders directly in tests
+- Use specific error messages for different scenarios
+
+### References
+- `/packages/extension/src/utils/env-file.ts`: File existence utility
+- `/packages/extension/src/test/env-file.test.ts`: Utility tests
+- VS Code API: workspace.workspaceFolders
+
+## Test Infrastructure Improvements
+
+### Summary
+Enhanced VS Code extension testing with parallel execution and improved mocking strategies.
+
+### Key Insights
+- Vitest parallel execution significantly improves test performance
+- Proper VS Code API mocking is crucial for reliable tests
+- Status bar item mocking requires careful type handling
+- Thread pool and file parallelism work well together
+- Isolating test environments prevents state interference
+
+### References
+- `vitest.config.ts`: Parallel test configuration
+- `packages/extension/src/test/__mocks__/vscode.ts`: VS Code API mocks
+- `packages/extension/src/test/extension.test.ts`: Test implementation

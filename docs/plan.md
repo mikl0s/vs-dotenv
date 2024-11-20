@@ -18,7 +18,7 @@ The project uses a workspace-based structure for better organization and scalabi
 - `/docs`: Project documentation
 - Uses npm workspaces for dependency management
 - TypeScript for type safety
-- Vitest for testing
+- Vitest for testing with parallel execution support
 
 ## Epics
 
@@ -29,10 +29,11 @@ The project uses a workspace-based structure for better organization and scalabi
   - Set up TypeScript configuration
   - Configured modern testing with Vitest
   - Implemented clean dependency management
+  - Added parallel test execution
 - [x] **Story 1.2:** Add a status bar button labeled "Update .env".
   - Added status bar button with "Update .env" text
   - Implemented proper disposal handling
-  - Added unit tests
+  - Added unit tests with improved mocking
 - [x] **Story 1.3:** Implement basic click event handler for the status bar button.
   - Added command registration with proper disposal
   - Implemented click handler with info message
@@ -41,7 +42,7 @@ The project uses a workspace-based structure for better organization and scalabi
 
 ### 2. Functionality When Clicked
 
-- [ ] **Story 2.1:** Check if a `.env` file exists in the current workspace folder.
+- [x] **Story 2.1:** Check if a `.env` file exists in the current workspace folder.
 - [ ] **Story 2.2:** Fetch a `.env` file from a private GitHub Gist if the file does not exist.
 - [ ] **Story 2.3:** Save the fetched `.env` file to the current workspace folder.
 - [ ] **Story 2.4:** Fetch the `.env` file from the private gist if the file already exists.

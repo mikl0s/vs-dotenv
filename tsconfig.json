@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "module": "ESNext",
+    "target": "ES2020",
+    "lib": ["ES2020"],
+    "sourceMap": true,
+    "rootDir": ".",
+    "strict": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedParameters": true,
+    "moduleResolution": "node",
+    "baseUrl": ".",
+    "paths": {
+      "vscode": ["packages/extension/src/test/__mocks__/vscode"]
+    },
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "types": ["vitest/globals", "node", "vscode"]
+  },
+  "include": [
+    "packages/extension/src/**/*",
+    "vitest.config.ts"
+  ],
+  "exclude": ["node_modules", ".vscode-test"]
+}
