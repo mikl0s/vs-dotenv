@@ -10,11 +10,24 @@
 - **Community Discussions:** [https://stackoverflow.com/questions/tagged/visual-studio-code-extensions](https://stackoverflow.com/questions/tagged/visual-studio-code-extensions)
 - **Microsoft's Extension Authoring Pack:** [https://marketplace.visualstudio.com/items?itemName=ms-vscode.vscode-extension-pack](https://marketplace.visualstudio.com/items?itemName=ms-vscode.vscode-extension-pack)
 
+## Project Structure
+
+The project uses a workspace-based structure for better organization and scalability:
+- `/packages/extension`: Main VS Code extension code
+- `/docs`: Project documentation
+- Uses npm workspaces for dependency management
+- TypeScript for type safety
+- Vitest for testing
+
 ## Epics
 
 ### 1. Status Bar Button
 
-- [ ] **Story 1.1:** Create a new VS Code extension project.
+- [x] **Story 1.1:** Create a new VS Code extension project.
+  - Created workspace-based project structure
+  - Set up TypeScript configuration
+  - Configured modern testing with Vitest
+  - Implemented clean dependency management
 - [ ] **Story 1.2:** Add a status bar button labeled "Update .env".
 - [ ] **Story 1.3:** Implement basic click event handler for the status bar button.
 

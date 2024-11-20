@@ -1,2 +1,23 @@
-#vscdode
+# VS Code
 *.code-workspace
+.vscode
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build outputs
+out/
+dist/
+*.vsix
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# System Files
+.DS_Store
+Thumbs.db

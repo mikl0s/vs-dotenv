@@ -1,11 +1,11 @@
-# 1. Read and Understand @guidelines.md
+# 1. Read and Understand @guidelines.md 
 
-- Describe what you learned from @guidelines.md
+- Describe what you learned from @guidelines.md 
 
 ## 2. Detailed Implementation Plan
 
-- Find the next thee incomplete stories from @plan.md and let the humand pick which story to work on.
-- Develop a comprehensive plan for the chosen story from @plan.md.
+- Find the next thee incomplete stories from @plan.md  and let the humand pick which story to work on.
+- Develop a comprehensive plan for the chosen story from @plan.md 
 
 ## 3. Implementation of the Next Story
 
@@ -17,5 +17,5 @@
 
 ## 5. Update and Commit
 
-- After completing the story and passing tests, update @plan.md and @README.md.
+- After completing the story and passing tests, update @plan.md  and @fix-resume.md 
 - Use meaningful commit messages to document the progress and commit the changes but no pushing.

@@ -1,0 +1,43 @@
+{
+  "name": "vscode-update-env",
+  "displayName": "Update .env",
+  "description": "VS Code extension to update .env files from a private GitHub Gist",
+  "version": "0.0.1",
+  "private": true,
+  "engines": {
+    "vscode": "^1.84.0",
+    "node": ">=18.0.0"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": []
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "vitest"
+  },
+  "devDependencies": {
+    "@types/vscode": "latest",
+    "@types/node": "latest",
+    "typescript": "latest",
+    "vitest": "latest",
+    "@typescript-eslint/parser": "latest",
+    "@typescript-eslint/eslint-plugin": "latest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/vscode-update-env"
+  },
+  "license": "MIT"
+}
