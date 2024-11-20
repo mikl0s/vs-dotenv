@@ -33,7 +33,11 @@ The project uses a workspace-based structure for better organization and scalabi
   - Added status bar button with "Update .env" text
   - Implemented proper disposal handling
   - Added unit tests
-- [ ] **Story 1.3:** Implement basic click event handler for the status bar button.
+- [x] **Story 1.3:** Implement basic click event handler for the status bar button.
+  - Added command registration with proper disposal
+  - Implemented click handler with info message
+  - Added comprehensive unit tests
+  - Prepared for future .env update logic
 
 ### 2. Functionality When Clicked
 
