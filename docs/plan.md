@@ -29,7 +29,10 @@ The project uses a workspace-based structure for better organization and scalabi
   - Set up TypeScript configuration
   - Configured modern testing with Vitest
   - Implemented clean dependency management
-- [ ] **Story 1.2:** Add a status bar button labeled "Update .env".
+- [x] **Story 1.2:** Add a status bar button labeled "Update .env".
+  - Added status bar button with "Update .env" text
+  - Implemented proper disposal handling
+  - Added unit tests
 - [ ] **Story 1.3:** Implement basic click event handler for the status bar button.
 
 ### 2. Functionality When Clicked

@@ -2,7 +2,7 @@
 
 After completing each user story, perform a concise post-mortem analysis and document lessons learned that could accelerate similar or related stories in the future.
 
-Create or update a `lesson.md` file in the `docs` folder with a compressed format for AI reference. Use the following structure:
+Create or update a lesson.md file in the docs folder with a compressed format for AI reference. Use the following structure:
 
 1. **Summary**: One-sentence description of the user story.  
 2. **Key Insights**: Concise bullet points summarizing lessons learned, focusing on reusable strategies, patterns, or tools.  

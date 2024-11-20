@@ -29,3 +29,8 @@
 
 10. **Regular Testing and Debugging**
     - Test across environments; utilize debugging tools effectively.
+
+11. **Environment Variables**
+    - You are in a Windows Terminal
+    - Fileoperations are run with cmd /c
+    - No color in testing - example: npx vitest run --no-color

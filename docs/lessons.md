@@ -17,3 +17,19 @@ Set up a modern VS Code extension project using workspace-based architecture wit
 - `.eslintrc.json`: Linting configuration
 - `package.json`: Workspace and dependency setup
 - `docs/plan.md`: Project structure section
+
+## Story 1.2: Add Status Bar Button
+
+### Summary
+Implemented a VS Code status bar button with proper TypeScript typing and disposal handling.
+
+### Key Insights
+- Use StatusBarAlignment.Right with high priority (100) for consistent positioning
+- Always dispose status bar items in deactivate() function
+- Add items to context.subscriptions for automatic cleanup
+- Mock vscode namespace in tests for proper unit testing
+
+### References
+- `/packages/extension/src/extension.ts`: Status bar implementation
+- `/packages/extension/src/test/extension.test.ts`: Unit tests
+- VS Code API: window.createStatusBarItem
