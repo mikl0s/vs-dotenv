@@ -13,6 +13,7 @@
 ## Project Structure
 
 The project uses a workspace-based structure for better organization and scalability:
+
 - `/packages/extension`: Main VS Code extension code
 - `/docs`: Project documentation
 - Uses npm workspaces for dependency management
