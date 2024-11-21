@@ -16,7 +16,10 @@ const vscode = {
         }))
     },
     workspace: {
-        workspaceFolders: undefined
+        workspaceFolders: undefined,
+        fs: {
+            writeFile: vi.fn()
+        }
     },
     Uri: {
         file: (filePath: string) => {

@@ -42,7 +42,9 @@ A Visual Studio Code extension that automatically updates your `.env` files by s
 The extension is under active development. Currently supports:
 - ✅ Status bar integration
 - ✅ Checking for existing `.env` files
+- ✅ Fetching `.env` content from Gist
 - ✅ Creating new `.env` files from Gist
+- ✅ Saving fetched `.env` files with proper error handling
 - 🚧 Updating existing `.env` files (coming soon)
 - 🚧 Preserving local values (coming soon)
 
@@ -74,6 +76,8 @@ npm run test
 ## Project Structure
 
 - `/packages/extension`: Main extension code
+  - `src/utils`: Utility functions for file operations and Gist integration
+  - `src/test`: Comprehensive test suite with parallel execution
 - `/docs`: Project documentation
 - Uses npm workspaces for clean dependency management
 - TypeScript for type safety

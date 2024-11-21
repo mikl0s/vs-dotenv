@@ -6,12 +6,13 @@
 2. **Unit Testing**
    - Write tests covering all features and edge cases.
    - Utilize Vitest in parallel mode for unit testing.
+   - npx vitest run --no-color
 
 3. **Clear Comments**
    - Explain complex code; use JSDoc/TSDoc annotations.
 
 4. **Documentation**
-   - Provide a `README.md` with instructions and examples.
+   - Provide a README.md with instructions and examples.
 
 5. **Error Handling**
    - Handle exceptions gracefully; provide user-friendly messages.

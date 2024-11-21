@@ -1,62 +1,105 @@
 import './setup';
-import { expect, test, vi, beforeEach } from 'vitest';
+import { expect, test, vi, beforeEach, describe } from 'vitest';
 import * as vscode from 'vscode';
-import * as fs from 'fs';
-import * as path from 'path';
-import { checkEnvFileExists } from '../utils/env-file';
-
-vi.mock('fs');
-vi.mock('path');
+import { promises as fsPromises, constants as fsConstants } from 'fs';
+import { join } from 'path';
+import { checkEnvFileExists, saveEnvFile } from '../utils/env-file';
 
 describe('env-file utilities', () => {
-    beforeEach(() => {
-        vi.clearAllMocks();
-        vi.mocked(vscode.workspace).workspaceFolders = undefined;
+    const mockWorkspaceFolder = {
+        uri: vscode.Uri.file('/workspace'),
+        name: 'workspace',
+        index: 0
+    };
+
+    describe('checkEnvFileExists', () => {
+        test('throws error when no workspace folder is open', async () => {
+            vi.mocked(vscode.workspace).workspaceFolders = undefined;
+            await expect(checkEnvFileExists()).rejects.toThrow('No workspace folder is open');
+        });
+
+        describe('with workspace folder', () => {
+            beforeEach(() => {
+                vi.mocked(vscode.workspace).workspaceFolders = [mockWorkspaceFolder];
+                vi.mocked(join).mockReturnValue('/workspace/.env');
+            });
+
+            test('returns true when .env file exists', async () => {
+                vi.mocked(fsPromises.access).mockResolvedValue(undefined);
+
+                const result = await checkEnvFileExists();
+                expect(result).toBe(true);
+                expect(fsPromises.access).toHaveBeenCalledWith('/workspace/.env', fsConstants.F_OK);
+            });
+
+            test('returns false when .env file does not exist', async () => {
+                vi.mocked(fsPromises.access).mockRejectedValue(new Error('ENOENT'));
+
+                const result = await checkEnvFileExists();
+                expect(result).toBe(false);
+                expect(fsPromises.access).toHaveBeenCalledWith('/workspace/.env', fsConstants.F_OK);
+            });
+
+            test('throws error for permission denied', async () => {
+                vi.mocked(fsPromises.access).mockRejectedValue(new Error('EPERM'));
+
+                await expect(checkEnvFileExists()).rejects.toThrow('EPERM');
+                expect(fsPromises.access).toHaveBeenCalledWith('/workspace/.env', fsConstants.F_OK);
+            });
+
+            test('throws error for other filesystem errors', async () => {
+                vi.mocked(fsPromises.access).mockRejectedValue(new Error('UNKNOWN'));
+
+                const result = await checkEnvFileExists();
+                expect(result).toBe(false);
+                expect(fsPromises.access).toHaveBeenCalledWith('/workspace/.env', fsConstants.F_OK);
+            });
+        });
     });
 
-    test('throws error when no workspace folder is open', async () => {
-        await expect(checkEnvFileExists()).rejects.toThrow('No workspace folder is open');
-    });
+    describe('saveEnvFile', () => {
+        test('throws error when no workspace folder is open', async () => {
+            vi.mocked(vscode.workspace).workspaceFolders = undefined;
+            await expect(saveEnvFile('content')).rejects.toThrow('No workspace folder is open');
+        });
 
-    test('returns true when .env file exists', async () => {
-        vi.mocked(vscode.workspace).workspaceFolders = [{
-            uri: { fsPath: '/workspace' } as vscode.Uri,
-            name: 'workspace',
-            index: 0
-        }];
+        describe('with workspace folder', () => {
+            beforeEach(() => {
+                vi.mocked(vscode.workspace).workspaceFolders = [mockWorkspaceFolder];
+                vi.mocked(join).mockReturnValue('/workspace/.env');
+            });
 
-        vi.mocked(path.join).mockReturnValue('/workspace/.env');
-        vi.mocked(fs.promises.access).mockResolvedValue(undefined);
+            test('successfully saves content', async () => {
+                vi.mocked(vscode.workspace.fs.writeFile).mockResolvedValue(undefined);
 
-        const result = await checkEnvFileExists();
-        expect(result).toBe(true);
-        expect(fs.promises.access).toHaveBeenCalledWith('/workspace/.env', fs.constants.F_OK);
-    });
+                await expect(saveEnvFile('test=value')).resolves.toBeUndefined();
+                expect(vscode.workspace.fs.writeFile).toHaveBeenCalledWith(
+                    expect.objectContaining({
+                        scheme: 'file',
+                        fsPath: '/workspace/.env'
+                    }),
+                    expect.any(Uint8Array)
+                );
+            });
 
-    test('returns false when .env file does not exist', async () => {
-        vi.mocked(vscode.workspace).workspaceFolders = [{
-            uri: { fsPath: '/workspace' } as vscode.Uri,
-            name: 'workspace',
-            index: 0
-        }];
+            test('throws error when write fails', async () => {
+                vi.mocked(vscode.workspace.fs.writeFile).mockRejectedValue(new Error('Write failed'));
 
-        vi.mocked(path.join).mockReturnValue('/workspace/.env');
-        vi.mocked(fs.promises.access).mockRejectedValue(new Error('ENOENT'));
+                await expect(saveEnvFile('test=value')).rejects.toThrow('Failed to save .env file: Write failed');
+                expect(vscode.workspace.fs.writeFile).toHaveBeenCalledWith(
+                    expect.objectContaining({
+                        scheme: 'file',
+                        fsPath: '/workspace/.env'
+                    }),
+                    expect.any(Uint8Array)
+                );
+            });
 
-        const result = await checkEnvFileExists();
-        expect(result).toBe(false);
-    });
+            test('throws error for unknown errors', async () => {
+                vi.mocked(vscode.workspace.fs.writeFile).mockRejectedValue('Unknown error');
 
-    test('throws error for unexpected file system errors', async () => {
-        vi.mocked(vscode.workspace).workspaceFolders = [{
-            uri: { fsPath: '/workspace' } as vscode.Uri,
-            name: 'workspace',
-            index: 0
-        }];
-
-        vi.mocked(path.join).mockReturnValue('/workspace/.env');
-        vi.mocked(fs.promises.access).mockRejectedValue(new Error('EPERM'));
-
-        await expect(checkEnvFileExists()).rejects.toThrow('EPERM');
+                await expect(saveEnvFile('test=value')).rejects.toThrow('Failed to save .env file: Unknown error');
+            });
+        });
     });
 });
