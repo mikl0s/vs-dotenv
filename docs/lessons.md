@@ -68,6 +68,26 @@ Implemented file existence checking for .env files in the workspace with proper 
 - `/packages/extension/src/test/env-file.test.ts`: Utility tests
 - VS Code API: workspace.workspaceFolders
 
+## Story 2.2: Fetch .env from GitHub Gist
+
+### Summary
+Implemented functionality to fetch .env file content from a GitHub Gist using configuration from local .env file.
+
+### Key Insights
+- Use dotenv for reading configuration from .env files
+- Separate config loading from gist fetching for better testability
+- Use node-fetch for simple HTTP requests instead of full GitHub API
+- Mock process.env in tests by resetting it in beforeEach
+- Create proper VS Code Uri mocks with all required properties
+- Use Partial<Type> for cleaner test mocks
+- Handle empty responses and network errors separately
+
+### References
+- `/packages/extension/src/utils/config.ts`: Configuration utility
+- `/packages/extension/src/utils/gist-service.ts`: Gist fetching service
+- `/packages/extension/src/test/utils/config.test.ts`: Config testing examples
+- VS Code API: workspace.fs.writeFile, Uri.joinPath
+
 ## Test Infrastructure Improvements
 
 ### Summary

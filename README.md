@@ -20,17 +20,31 @@ A Visual Studio Code extension that automatically updates your `.env` files by s
 
 ## Usage
 
-1. Configure your private Gist URL in VS Code settings
+1. Create a `.env` file in your project root with:
+   ```
+   ENV_GIST_FALLBACK_URL=<your-gist-raw-url>
+   ```
 2. Click the "Update .env" button in the status bar
 3. The extension will:
-   - Create `.env` if it doesn't exist
-   - Add new variables from the Gist
-   - Preserve your existing values
+   - Create `.env` if it doesn't exist by fetching from your Gist
+   - Add new variables from the Gist (coming soon)
+   - Preserve your existing values (coming soon)
 
 ## Requirements
 
 - VS Code 1.84.0 or higher
-- A private GitHub Gist containing your template `.env` file
+- Node.js 18.0.0 or higher
+- A GitHub Gist containing your template `.env` file
+- The raw URL of your Gist in your local `.env` file
+
+## Current Status
+
+The extension is under active development. Currently supports:
+- ✅ Status bar integration
+- ✅ Checking for existing `.env` files
+- ✅ Creating new `.env` files from Gist
+- 🚧 Updating existing `.env` files (coming soon)
+- 🚧 Preserving local values (coming soon)
 
 ## Extension Settings
 

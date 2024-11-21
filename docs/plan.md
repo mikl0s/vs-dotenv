@@ -43,7 +43,15 @@ The project uses a workspace-based structure for better organization and scalabi
 ### 2. Functionality When Clicked
 
 - [x] **Story 2.1:** Check if a `.env` file exists in the current workspace folder.
-- [ ] **Story 2.2:** Fetch a `.env` file from a private GitHub Gist if the file does not exist.
+  - Created env-file utility for file existence checks
+  - Added workspace folder validation
+  - Implemented error handling for missing workspace
+  - Added comprehensive unit tests with VS Code API mocking
+- [x] **Story 2.2:** Fetch a `.env` file from a private GitHub Gist if the file does not exist.
+  - Added config utility to read gist URL from .env
+  - Created gist service for fetching content
+  - Implemented error handling and user notifications
+  - Added comprehensive unit tests
 - [ ] **Story 2.3:** Save the fetched `.env` file to the current workspace folder.
 - [ ] **Story 2.4:** Fetch the `.env` file from the private gist if the file already exists.
 - [ ] **Story 2.5:** Compare the fetched `.env` file with the existing one.
